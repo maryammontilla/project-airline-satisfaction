@@ -1,0 +1,5 @@
+pandas
+plotly
+scikit_learn==1.2.2
+streamlit
+matplotlib
