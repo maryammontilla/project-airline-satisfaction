@@ -141,7 +141,7 @@ if page == "Modeling":
             model = RandomForestClassifier()
         elif model_option == 'KNN':
             k_value = st.slider('Select a number of k', 1, 29, 5, 2)
-            model = KNeighborsClassifier(n_neighbors =k_value)
+            model = KNeighborsClassifier(n_neighbors =k_value, n_jobs = -1)
             
         if st.button("Let's see the performance!"): 
             
@@ -171,27 +171,27 @@ if page == "Make Predictions!":
     # Create sliders for user to input data
     st.subheader("Adjust the sliders to input data:")
 
-    s_l = st.slider("Age", 1.0, 100.0, 1.0, 1.0)
-    s_w = st.slider("Flight Distance", 0.01, 10.0, 0.01, 0.01)
-    p_l = st.slider("Inflight wifi service", 0.01, 10.0, 0.01, 0.01)
-    p_w = st.slider("Departure/Arrival time convenient", 0.01, 10.0, 0.01, 0.01)
-    st.slider("Ease of Online booking", 0.01, 10.0, 0.01, 0.01)
-    st.slider("Gate location", 0.01, 10.0, 0.01, 0.01)
-    st.slider("Food and drink", 0.01, 10.0, 0.01, 0.01)
-    st.slider("Online boarding", 0.01, 10.0, 0.01, 0.01)
-    st.slider("Seat comfort", 0.01, 10.0, 0.01, 0.01)
-    st.slider("Inflight entertainment", 0.01, 10.0, 0.01, 0.01)
-    st.slider("Leg room service", 0.01, 10.0, 0.01, 0.01)
-    st.slider("Baggage handling", 0.01, 10.0, 0.01, 0.01)
-    st.slider("Checkin service", 0.01, 10.0, 0.01, 0.01)
-    st.slider("Inflight service", 0.01, 10.0, 0.01, 0.01)
-    st.slider("Cleanliness", 0.01, 10.0, 0.01, 0.01)
-    st.slider("Departure Delay in Minutes", 0.01, 10.0, 0.01, 0.01)
-    st.slider("Arrival Delay in Minutes", 0.01, 10.0, 0.01, 0.01)
+    age = st.slider("Age", 1.0, 100.0, 1.0, 1.0)
+    flight_d = st.slider("Flight Distance", 1.0, 5.0, 1.0, 1.0)
+    p_l = st.slider("Inflight wifi service", 1.0, 5.0, 1.0, 1.0)
+    p_w = st.slider("Departure/Arrival time convenient", 1.0, 5.0, 1.0, 1.0)
+    st.slider("Ease of Online booking", 1.0, 5.0, 1.0, 1.0)
+    st.slider("Gate location", 1.0, 5.0, 1.0, 1.0)
+    st.slider("Food and drink", 1.0, 5.0, 1.0, 1.0)
+    st.slider("Online boarding", 1.0, 5.0, 1.0, 1.0)
+    st.slider("Seat comfort", 1.0, 5.0, 1.0, 1.0)
+    st.slider("Inflight entertainment", 1.0, 5.0, 1.0, 1.0)
+    st.slider("Leg room service", 1.0, 5.0, 1.0, 1.0)
+    st.slider("Baggage handling", 1.0, 5.0, 1.0, 1.0)
+    st.slider("Checkin service", 1.0, 5.0, 1.0, 1.0)
+    st.slider("Inflight service", 01.0, 5.0, 1.0, 1.0)
+    st.slider("Cleanliness", 1.0, 5.0, 1.0, 1.0)
+    st.slider("Departure Delay in Minutes", 1.0, 5.0, 1.0, 1.0)
+    st.slider("Arrival Delay in Minutes", 1.0, 5.0, 1.0, 1.0)
 
     # Your features must be in order that the model was trained on
     user_input = pd.DataFrame({
-            'sepal_length': [s_l],
+            'age': [s_l],
             'sepal_width': [s_w],
             'petal_length': [p_l],
             'petal_width': [p_w]
@@ -199,9 +199,9 @@ if page == "Make Predictions!":
 
     # Check out "pickling" to learn how we can "save" a model
     # and avoid the need to refit again!
-    features = ['sepal_length', 'sepal_width', 'petal_length', 'petal_width']
+    features = ['Age', 'Flight Distance', 'Inflight wifi service', 'Departure/Arrival time convenient', 'Ease of Online booking', 'Gate location', 'Food and drink', 'Online boarding', 'Seat comfort', 'Inflight entertainment', 'On-board service', 'Leg room service', 'Baggage handling', 'Checkin service', 'Inflight service', 'Cleanliness', 'Departure Delay in Minutes', 'Arrival Delay in Minutes']
     X = df[features]
-    y = df['species']
+    y = df['satisfaction']
 
     # Model Selection
     st.write("The predictions are made using KNN as it performed the best out of all of the models.")
